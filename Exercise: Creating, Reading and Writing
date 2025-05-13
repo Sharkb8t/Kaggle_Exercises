@@ -1,0 +1,1113 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "1884f6ca",
+   "metadata": {
+    "papermill": {
+     "duration": 0.004983,
+     "end_time": "2025-05-13T19:15:56.125358",
+     "exception": false,
+     "start_time": "2025-05-13T19:15:56.120375",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "**This notebook is an exercise in the [Pandas](https://www.kaggle.com/learn/pandas) course.  You can reference the tutorial at [this link](https://www.kaggle.com/residentmario/creating-reading-and-writing).**\n",
+    "\n",
+    "---\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f1135963",
+   "metadata": {
+    "papermill": {
+     "duration": 0.004407,
+     "end_time": "2025-05-13T19:15:56.134447",
+     "exception": false,
+     "start_time": "2025-05-13T19:15:56.130040",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "# Introduction\n",
+    "\n",
+    "The first step in most data analytics projects is reading the data file. In this exercise, you'll create Series and DataFrame objects, both by hand and by reading data files.\n",
+    "\n",
+    "Run the code cell below to load libraries you will need (including code to check your answers)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "7a7f61c3",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2025-05-13T19:15:56.143759Z",
+     "iopub.status.busy": "2025-05-13T19:15:56.143342Z",
+     "iopub.status.idle": "2025-05-13T19:16:00.112369Z",
+     "shell.execute_reply": "2025-05-13T19:16:00.111165Z"
+    },
+    "papermill": {
+     "duration": 3.975576,
+     "end_time": "2025-05-13T19:16:00.114033",
+     "exception": false,
+     "start_time": "2025-05-13T19:15:56.138457",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Setup complete.\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "pd.set_option('display.max_rows', 5)\n",
+    "from learntools.core import binder; binder.bind(globals())\n",
+    "from learntools.pandas.creating_reading_and_writing import *\n",
+    "print(\"Setup complete.\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "694394b8",
+   "metadata": {
+    "papermill": {
+     "duration": 0.004564,
+     "end_time": "2025-05-13T19:16:00.122897",
+     "exception": false,
+     "start_time": "2025-05-13T19:16:00.118333",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "# Exercises"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "90e43cea",
+   "metadata": {
+    "papermill": {
+     "duration": 0.003837,
+     "end_time": "2025-05-13T19:16:00.131236",
+     "exception": false,
+     "start_time": "2025-05-13T19:16:00.127399",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "## 1.\n",
+    "\n",
+    "In the cell below, create a DataFrame `fruits` that looks like this:\n",
+    "\n",
+    "![](https://storage.googleapis.com/kaggle-media/learn/images/Ax3pp2A.png)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "8644d552",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2025-05-13T19:16:00.141658Z",
+     "iopub.status.busy": "2025-05-13T19:16:00.140673Z",
+     "iopub.status.idle": "2025-05-13T19:16:00.171729Z",
+     "shell.execute_reply": "2025-05-13T19:16:00.170187Z"
+    },
+    "papermill": {
+     "duration": 0.038078,
+     "end_time": "2025-05-13T19:16:00.173592",
+     "exception": false,
+     "start_time": "2025-05-13T19:16:00.135514",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "application/javascript": [
+       "parent.postMessage({\"jupyterEvent\": \"custom.exercise_interaction\", \"data\": {\"outcomeType\": 1, \"valueTowardsCompletion\": 0.16666666666666666, \"interactionType\": 1, \"questionType\": 1, \"questionId\": \"1_FruitDfCreation\", \"learnToolsVersion\": \"0.3.5\", \"failureMessage\": \"\", \"exceptionClass\": \"\", \"trace\": \"\"}}, \"*\")"
+      ],
+      "text/plain": [
+       "<IPython.core.display.Javascript object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/markdown": [
+       "<span style=\"color:#33cc33\">Correct</span>"
+      ],
+      "text/plain": [
+       "Correct"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Apples</th>\n",
+       "      <th>Bananas</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>30</td>\n",
+       "      <td>21</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   Apples  Bananas\n",
+       "0      30       21"
+      ]
+     },
+     "execution_count": 2,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# Your code goes here. Create a dataframe matching the above diagram and assign it to the variable fruits.\n",
+    "fruits = pd.DataFrame(\n",
+    "    data = {\n",
+    "        \"Apples\": [30],\n",
+    "        \"Bananas\": [21],\n",
+    "    })\n",
+    "    \n",
+    "\n",
+    "# Check your answer\n",
+    "q1.check()\n",
+    "fruits"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "c132e195",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2025-05-13T19:16:00.183951Z",
+     "iopub.status.busy": "2025-05-13T19:16:00.183499Z",
+     "iopub.status.idle": "2025-05-13T19:16:00.188015Z",
+     "shell.execute_reply": "2025-05-13T19:16:00.187120Z"
+    },
+    "papermill": {
+     "duration": 0.011964,
+     "end_time": "2025-05-13T19:16:00.190075",
+     "exception": false,
+     "start_time": "2025-05-13T19:16:00.178111",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "#q1.hint()\n",
+    "#q1.solution()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "79fc8a09",
+   "metadata": {
+    "papermill": {
+     "duration": 0.004027,
+     "end_time": "2025-05-13T19:16:00.198441",
+     "exception": false,
+     "start_time": "2025-05-13T19:16:00.194414",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "## 2.\n",
+    "\n",
+    "Create a dataframe `fruit_sales` that matches the diagram below:\n",
+    "\n",
+    "![](https://storage.googleapis.com/kaggle-media/learn/images/CHPn7ZF.png)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "e90613fd",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2025-05-13T19:16:00.208592Z",
+     "iopub.status.busy": "2025-05-13T19:16:00.208223Z",
+     "iopub.status.idle": "2025-05-13T19:16:00.221967Z",
+     "shell.execute_reply": "2025-05-13T19:16:00.221144Z"
+    },
+    "papermill": {
+     "duration": 0.020767,
+     "end_time": "2025-05-13T19:16:00.223630",
+     "exception": false,
+     "start_time": "2025-05-13T19:16:00.202863",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "application/javascript": [
+       "parent.postMessage({\"jupyterEvent\": \"custom.exercise_interaction\", \"data\": {\"outcomeType\": 1, \"valueTowardsCompletion\": 0.16666666666666666, \"interactionType\": 1, \"questionType\": 1, \"questionId\": \"2_FruitSalesDfCreation\", \"learnToolsVersion\": \"0.3.5\", \"failureMessage\": \"\", \"exceptionClass\": \"\", \"trace\": \"\"}}, \"*\")"
+      ],
+      "text/plain": [
+       "<IPython.core.display.Javascript object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/markdown": [
+       "<span style=\"color:#33cc33\">Correct</span>"
+      ],
+      "text/plain": [
+       "Correct"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Apples</th>\n",
+       "      <th>Bananas</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>2017 Sales</th>\n",
+       "      <td>35</td>\n",
+       "      <td>21</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2018 Sales</th>\n",
+       "      <td>41</td>\n",
+       "      <td>34</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "            Apples  Bananas\n",
+       "2017 Sales      35       21\n",
+       "2018 Sales      41       34"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# Your code goes here. Create a dataframe matching the above diagram and assign it to the variable fruit_sales.\n",
+    "fruit_sales = pd.DataFrame(\n",
+    "    data = {\n",
+    "        \"Apples\": [ 35, 41 ],\n",
+    "        \"Bananas\": [ 21, 34 ],\n",
+    "    }, \n",
+    "    index = [\n",
+    "        \"2017 Sales\",\n",
+    "        \"2018 Sales\",\n",
+    "    ]\n",
+    ")\n",
+    "\n",
+    "# Check your answer\n",
+    "q2.check()\n",
+    "fruit_sales"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "e54b3c61",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2025-05-13T19:16:00.234168Z",
+     "iopub.status.busy": "2025-05-13T19:16:00.233847Z",
+     "iopub.status.idle": "2025-05-13T19:16:00.239368Z",
+     "shell.execute_reply": "2025-05-13T19:16:00.238230Z"
+    },
+    "papermill": {
+     "duration": 0.012651,
+     "end_time": "2025-05-13T19:16:00.240946",
+     "exception": false,
+     "start_time": "2025-05-13T19:16:00.228295",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "#q2.hint()\n",
+    "#q2.solution()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c7fbc977",
+   "metadata": {
+    "papermill": {
+     "duration": 0.004563,
+     "end_time": "2025-05-13T19:16:00.250226",
+     "exception": false,
+     "start_time": "2025-05-13T19:16:00.245663",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "## 3.\n",
+    "\n",
+    "Create a variable `ingredients` with a Series that looks like:\n",
+    "\n",
+    "```\n",
+    "Flour     4 cups\n",
+    "Milk       1 cup\n",
+    "Eggs     2 large\n",
+    "Spam       1 can\n",
+    "Name: Dinner, dtype: object\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "123f219d",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2025-05-13T19:16:00.260608Z",
+     "iopub.status.busy": "2025-05-13T19:16:00.260313Z",
+     "iopub.status.idle": "2025-05-13T19:16:00.272222Z",
+     "shell.execute_reply": "2025-05-13T19:16:00.271111Z"
+    },
+    "papermill": {
+     "duration": 0.019296,
+     "end_time": "2025-05-13T19:16:00.274161",
+     "exception": false,
+     "start_time": "2025-05-13T19:16:00.254865",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "application/javascript": [
+       "parent.postMessage({\"jupyterEvent\": \"custom.exercise_interaction\", \"data\": {\"outcomeType\": 1, \"valueTowardsCompletion\": 0.16666666666666666, \"interactionType\": 1, \"questionType\": 2, \"questionId\": \"3_RecipeSeriesCreation\", \"learnToolsVersion\": \"0.3.5\", \"failureMessage\": \"\", \"exceptionClass\": \"\", \"trace\": \"\"}}, \"*\")"
+      ],
+      "text/plain": [
+       "<IPython.core.display.Javascript object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/markdown": [
+       "<span style=\"color:#33cc33\">Correct</span>"
+      ],
+      "text/plain": [
+       "Correct"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/plain": [
+       "Flour     4 cups\n",
+       "Milk       1 cup\n",
+       "Eggs     2 large\n",
+       "Spam       1 can\n",
+       "Name: Dinner, dtype: object"
+      ]
+     },
+     "execution_count": 6,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "ingredients = pd.Series(\n",
+    "    {\n",
+    "        \"Flour\": \"4 cups\",\n",
+    "        \"Milk\": \"1 cup\",\n",
+    "        \"Eggs\": \"2 large\",\n",
+    "        \"Spam\": \"1 can\",\n",
+    "    },\n",
+    "    name = \"Dinner\"\n",
+    ")\n",
+    "\n",
+    "# Check your answer\n",
+    "q3.check()\n",
+    "ingredients"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "9bd238e4",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2025-05-13T19:16:00.285303Z",
+     "iopub.status.busy": "2025-05-13T19:16:00.284967Z",
+     "iopub.status.idle": "2025-05-13T19:16:00.290272Z",
+     "shell.execute_reply": "2025-05-13T19:16:00.289131Z"
+    },
+    "papermill": {
+     "duration": 0.012601,
+     "end_time": "2025-05-13T19:16:00.291903",
+     "exception": false,
+     "start_time": "2025-05-13T19:16:00.279302",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "#q3.hint()\n",
+    "#q3.solution()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7eb17bd1",
+   "metadata": {
+    "papermill": {
+     "duration": 0.00463,
+     "end_time": "2025-05-13T19:16:00.301590",
+     "exception": false,
+     "start_time": "2025-05-13T19:16:00.296960",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "## 4.\n",
+    "\n",
+    "Read the following csv dataset of wine reviews into a DataFrame called `reviews`:\n",
+    "\n",
+    "![](https://storage.googleapis.com/kaggle-media/learn/images/74RCZtU.png)\n",
+    "\n",
+    "The filepath to the csv file is `../input/wine-reviews/winemag-data_first150k.csv`. The first few lines look like:\n",
+    "\n",
+    "```\n",
+    ",country,description,designation,points,price,province,region_1,region_2,variety,winery\n",
+    "0,US,\"This tremendous 100% varietal wine[...]\",Martha's Vineyard,96,235.0,California,Napa Valley,Napa,Cabernet Sauvignon,Heitz\n",
+    "1,Spain,\"Ripe aromas of fig, blackberry and[...]\",Carodorum Selección Especial Reserva,96,110.0,Northern Spain,Toro,,Tinta de Toro,Bodega Carmen Rodríguez\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "id": "b0c9cd8e",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2025-05-13T19:16:00.313361Z",
+     "iopub.status.busy": "2025-05-13T19:16:00.312977Z",
+     "iopub.status.idle": "2025-05-13T19:16:01.403879Z",
+     "shell.execute_reply": "2025-05-13T19:16:01.402979Z"
+    },
+    "papermill": {
+     "duration": 1.098925,
+     "end_time": "2025-05-13T19:16:01.406098",
+     "exception": false,
+     "start_time": "2025-05-13T19:16:00.307173",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "application/javascript": [
+       "parent.postMessage({\"jupyterEvent\": \"custom.exercise_interaction\", \"data\": {\"outcomeType\": 1, \"valueTowardsCompletion\": 0.16666666666666666, \"interactionType\": 1, \"questionType\": 1, \"questionId\": \"4_ReadWineCsv\", \"learnToolsVersion\": \"0.3.5\", \"failureMessage\": \"\", \"exceptionClass\": \"\", \"trace\": \"\"}}, \"*\")"
+      ],
+      "text/plain": [
+       "<IPython.core.display.Javascript object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/markdown": [
+       "<span style=\"color:#33cc33\">Correct</span>"
+      ],
+      "text/plain": [
+       "Correct"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>country</th>\n",
+       "      <th>description</th>\n",
+       "      <th>designation</th>\n",
+       "      <th>points</th>\n",
+       "      <th>price</th>\n",
+       "      <th>province</th>\n",
+       "      <th>region_1</th>\n",
+       "      <th>region_2</th>\n",
+       "      <th>variety</th>\n",
+       "      <th>winery</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>US</td>\n",
+       "      <td>This tremendous 100% varietal wine hails from ...</td>\n",
+       "      <td>Martha's Vineyard</td>\n",
+       "      <td>96</td>\n",
+       "      <td>235.0</td>\n",
+       "      <td>California</td>\n",
+       "      <td>Napa Valley</td>\n",
+       "      <td>Napa</td>\n",
+       "      <td>Cabernet Sauvignon</td>\n",
+       "      <td>Heitz</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>Spain</td>\n",
+       "      <td>Ripe aromas of fig, blackberry and cassis are ...</td>\n",
+       "      <td>Carodorum Selección Especial Reserva</td>\n",
+       "      <td>96</td>\n",
+       "      <td>110.0</td>\n",
+       "      <td>Northern Spain</td>\n",
+       "      <td>Toro</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>Tinta de Toro</td>\n",
+       "      <td>Bodega Carmen Rodríguez</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>...</th>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>150928</th>\n",
+       "      <td>France</td>\n",
+       "      <td>A perfect salmon shade, with scents of peaches...</td>\n",
+       "      <td>Grand Brut Rosé</td>\n",
+       "      <td>90</td>\n",
+       "      <td>52.0</td>\n",
+       "      <td>Champagne</td>\n",
+       "      <td>Champagne</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>Champagne Blend</td>\n",
+       "      <td>Gosset</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>150929</th>\n",
+       "      <td>Italy</td>\n",
+       "      <td>More Pinot Grigios should taste like this. A r...</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>90</td>\n",
+       "      <td>15.0</td>\n",
+       "      <td>Northeastern Italy</td>\n",
+       "      <td>Alto Adige</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>Pinot Grigio</td>\n",
+       "      <td>Alois Lageder</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>150930 rows × 10 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "       country                                        description  \\\n",
+       "0           US  This tremendous 100% varietal wine hails from ...   \n",
+       "1        Spain  Ripe aromas of fig, blackberry and cassis are ...   \n",
+       "...        ...                                                ...   \n",
+       "150928  France  A perfect salmon shade, with scents of peaches...   \n",
+       "150929   Italy  More Pinot Grigios should taste like this. A r...   \n",
+       "\n",
+       "                                 designation  points  price  \\\n",
+       "0                          Martha's Vineyard      96  235.0   \n",
+       "1       Carodorum Selección Especial Reserva      96  110.0   \n",
+       "...                                      ...     ...    ...   \n",
+       "150928                       Grand Brut Rosé      90   52.0   \n",
+       "150929                                   NaN      90   15.0   \n",
+       "\n",
+       "                  province     region_1 region_2             variety  \\\n",
+       "0               California  Napa Valley     Napa  Cabernet Sauvignon   \n",
+       "1           Northern Spain         Toro      NaN       Tinta de Toro   \n",
+       "...                    ...          ...      ...                 ...   \n",
+       "150928           Champagne    Champagne      NaN     Champagne Blend   \n",
+       "150929  Northeastern Italy   Alto Adige      NaN        Pinot Grigio   \n",
+       "\n",
+       "                         winery  \n",
+       "0                         Heitz  \n",
+       "1       Bodega Carmen Rodríguez  \n",
+       "...                         ...  \n",
+       "150928                   Gosset  \n",
+       "150929            Alois Lageder  \n",
+       "\n",
+       "[150930 rows x 10 columns]"
+      ]
+     },
+     "execution_count": 8,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "reviews = pd.read_csv(\"../input/wine-reviews/winemag-data_first150k.csv\", index_col=0)\n",
+    "\n",
+    "# Check your answer\n",
+    "q4.check()\n",
+    "reviews"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "c52acb6f",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2025-05-13T19:16:01.418712Z",
+     "iopub.status.busy": "2025-05-13T19:16:01.418385Z",
+     "iopub.status.idle": "2025-05-13T19:16:01.424010Z",
+     "shell.execute_reply": "2025-05-13T19:16:01.422946Z"
+    },
+    "papermill": {
+     "duration": 0.013816,
+     "end_time": "2025-05-13T19:16:01.425622",
+     "exception": false,
+     "start_time": "2025-05-13T19:16:01.411806",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "#q4.hint()\n",
+    "#q4.solution()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e6384fd6",
+   "metadata": {
+    "papermill": {
+     "duration": 0.005116,
+     "end_time": "2025-05-13T19:16:01.436866",
+     "exception": false,
+     "start_time": "2025-05-13T19:16:01.431750",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "## 5.\n",
+    "\n",
+    "Run the cell below to create and display a DataFrame called `animals`:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "d7759739",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2025-05-13T19:16:01.448625Z",
+     "iopub.status.busy": "2025-05-13T19:16:01.448317Z",
+     "iopub.status.idle": "2025-05-13T19:16:01.457922Z",
+     "shell.execute_reply": "2025-05-13T19:16:01.456965Z"
+    },
+    "papermill": {
+     "duration": 0.01741,
+     "end_time": "2025-05-13T19:16:01.459558",
+     "exception": false,
+     "start_time": "2025-05-13T19:16:01.442148",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Cows</th>\n",
+       "      <th>Goats</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>Year 1</th>\n",
+       "      <td>12</td>\n",
+       "      <td>22</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>Year 2</th>\n",
+       "      <td>20</td>\n",
+       "      <td>19</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "        Cows  Goats\n",
+       "Year 1    12     22\n",
+       "Year 2    20     19"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "animals = pd.DataFrame({'Cows': [12, 20], 'Goats': [22, 19]}, index=['Year 1', 'Year 2'])\n",
+    "animals"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e4fc68ab",
+   "metadata": {
+    "papermill": {
+     "duration": 0.005116,
+     "end_time": "2025-05-13T19:16:01.470447",
+     "exception": false,
+     "start_time": "2025-05-13T19:16:01.465331",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "In the cell below, write code to save this DataFrame to disk as a csv file with the name `cows_and_goats.csv`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "d71a6cfa",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2025-05-13T19:16:01.482382Z",
+     "iopub.status.busy": "2025-05-13T19:16:01.482071Z",
+     "iopub.status.idle": "2025-05-13T19:16:01.499801Z",
+     "shell.execute_reply": "2025-05-13T19:16:01.498909Z"
+    },
+    "papermill": {
+     "duration": 0.025628,
+     "end_time": "2025-05-13T19:16:01.501427",
+     "exception": false,
+     "start_time": "2025-05-13T19:16:01.475799",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "application/javascript": [
+       "parent.postMessage({\"jupyterEvent\": \"custom.exercise_interaction\", \"data\": {\"outcomeType\": 1, \"valueTowardsCompletion\": 0.16666666666666666, \"interactionType\": 1, \"questionType\": 2, \"questionId\": \"5_SaveAnimalsCsv\", \"learnToolsVersion\": \"0.3.5\", \"failureMessage\": \"\", \"exceptionClass\": \"\", \"trace\": \"\"}}, \"*\")"
+      ],
+      "text/plain": [
+       "<IPython.core.display.Javascript object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/markdown": [
+       "<span style=\"color:#33cc33\">Correct</span>"
+      ],
+      "text/plain": [
+       "Correct"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "animals.to_csv(\"cows_and_goats.csv\")\n",
+    "\n",
+    "# Check your answer\n",
+    "q5.check()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "d295de41",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2025-05-13T19:16:01.513987Z",
+     "iopub.status.busy": "2025-05-13T19:16:01.513625Z",
+     "iopub.status.idle": "2025-05-13T19:16:01.517992Z",
+     "shell.execute_reply": "2025-05-13T19:16:01.516923Z"
+    },
+    "papermill": {
+     "duration": 0.012377,
+     "end_time": "2025-05-13T19:16:01.519509",
+     "exception": false,
+     "start_time": "2025-05-13T19:16:01.507132",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "#q5.hint()\n",
+    "#q5.solution()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f3a3849e",
+   "metadata": {
+    "papermill": {
+     "duration": 0.005442,
+     "end_time": "2025-05-13T19:16:01.530759",
+     "exception": false,
+     "start_time": "2025-05-13T19:16:01.525317",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "# Keep going\n",
+    "\n",
+    "Move on to learn about **[indexing, selecting and assigning](https://www.kaggle.com/residentmario/indexing-selecting-assigning)**."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "43560adc",
+   "metadata": {
+    "papermill": {
+     "duration": 0.005205,
+     "end_time": "2025-05-13T19:16:01.541650",
+     "exception": false,
+     "start_time": "2025-05-13T19:16:01.536445",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "---\n",
+    "\n",
+    "\n",
+    "\n",
+    "\n",
+    "*Have questions or comments? Visit the [course discussion forum](https://www.kaggle.com/learn/pandas/discussion) to chat with other learners.*"
+   ]
+  }
+ ],
+ "metadata": {
+  "kaggle": {
+   "accelerator": "none",
+   "dataSources": [
+    {
+     "datasetId": 655,
+     "sourceId": 1252,
+     "sourceType": "datasetVersion"
+    },
+    {
+     "datasetId": 2321,
+     "sourceId": 3919,
+     "sourceType": "datasetVersion"
+    },
+    {
+     "datasetId": 2894,
+     "sourceId": 4877,
+     "sourceType": "datasetVersion"
+    },
+    {
+     "datasetId": 3491,
+     "sourceId": 5624,
+     "sourceType": "datasetVersion"
+    },
+    {
+     "datasetId": 1442,
+     "sourceId": 8172,
+     "sourceType": "datasetVersion"
+    },
+    {
+     "datasetId": 9366,
+     "sourceId": 13206,
+     "sourceType": "datasetVersion"
+    },
+    {
+     "datasetId": 179555,
+     "sourceId": 403916,
+     "sourceType": "datasetVersion"
+    },
+    {
+     "datasetId": 4549,
+     "sourceId": 466349,
+     "sourceType": "datasetVersion"
+    },
+    {
+     "datasetId": 2478,
+     "sourceId": 1151655,
+     "sourceType": "datasetVersion"
+    },
+    {
+     "datasetId": 10128,
+     "sourceId": 5438389,
+     "sourceType": "datasetVersion"
+    }
+   ],
+   "isGpuEnabled": false,
+   "isInternetEnabled": false,
+   "language": "python",
+   "sourceType": "notebook"
+  },
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.11.11"
+  },
+  "papermill": {
+   "default_parameters": {},
+   "duration": 11.512675,
+   "end_time": "2025-05-13T19:16:02.172341",
+   "environment_variables": {},
+   "exception": null,
+   "input_path": "__notebook__.ipynb",
+   "output_path": "__notebook__.ipynb",
+   "parameters": {},
+   "start_time": "2025-05-13T19:15:50.659666",
+   "version": "2.6.0"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
